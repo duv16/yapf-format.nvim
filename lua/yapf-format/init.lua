@@ -7,9 +7,9 @@ function M.setup(opts)
 	assert(opts.styleYapfPath, "Expected .style.yapf to be specified. Set styleYapfPath in opts.")
 
 	vim.api.nvim_create_autocmd({"BufWritePost"}, {
-		pattern = {"python"},
+		pattern = {python},
 		callback = function(ev)
-			local out = vim.fn.system({"yapf", "-i", ev.match, "--style:" .. opts.styleYapfPath})
+			local out = vim.fn.system({"yapf", "-i", ev.match, "--style=" .. opts.styleYapfPath})
 			if out ~= '' then
 				print(out)
 			end
